@@ -61,12 +61,13 @@ export const liquidProperties: Record<LiquidType, LiquidProperties> = {
   },
   LCO2: {
     name: 'Liquid Carbon Dioxide',
-    density: 1101,
+    density: 1008,
     gasEquivalent: 'CO2',
+    referenceNote: 'Industry reference at ~-10°C',
   },
   LH2: {
     name: 'Liquid Hydrogen',
-    density: 71,
+    density: 70.8,
     gasEquivalent: 'H2',
   },
   LHe: {

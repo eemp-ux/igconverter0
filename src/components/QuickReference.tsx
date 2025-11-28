@@ -69,16 +69,24 @@ export const QuickReference: React.FC = () => {
                       <td className="py-2 px-3">{liquid.name}</td>
                       <td className="py-2 px-3 text-right">
                         {liquid.density}
-                        {key === 'LCO2' && <span className="text-white/60 text-xs ml-1">*</span>}
+                        {liquid.referenceNote && <span className="text-white/60 text-xs ml-1">*</span>}
                       </td>
                       <td className="py-2 px-3">{liquid.gasEquivalent}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              <p className="text-white/60 text-xs mt-2 italic">
-                * LCO2 density is at triple point (-56.6°C, 5.18 bar)
-              </p>
+              {Object.values(liquidProperties).some(liquid => liquid.referenceNote) && (
+                <div className="mt-2 space-y-1">
+                  {Object.entries(liquidProperties).map(([key, liquid]) => 
+                    liquid.referenceNote && (
+                      <p key={key} className="text-white/60 text-xs italic">
+                        * {key}: {liquid.referenceNote}
+                      </p>
+                    )
+                  )}
+                </div>
+              )}
             </div>
           </div>
 
@@ -96,7 +104,7 @@ export const QuickReference: React.FC = () => {
             <h3 className="text-white font-medium mb-2">Important Notes</h3>
             <ul className="text-white/80 text-sm space-y-1 list-disc list-inside">
               <li>All gas densities are at standard conditions (0°C, 101.325 kPa)</li>
-              <li>Liquid densities are at boiling point (except LCO2 at triple point)</li>
+              <li>Liquid densities are at boiling point unless otherwise noted</li>
               <li>Temperature correction uses ideal gas law approximation</li>
               <li>Liquid to gas expansion ratios vary by substance</li>
               <li>1 liter of liquid ≠ 1 liter of gas (different physical states)</li>

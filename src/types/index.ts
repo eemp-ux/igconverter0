@@ -20,6 +20,7 @@ export interface LiquidProperties {
   name: string;
   density: number;
   gasEquivalent: GasType;
+  referenceNote?: string;
 }
 
 export interface ConversionResult {
